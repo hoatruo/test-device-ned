@@ -1,14 +1,17 @@
 # Description
 
 This test-device-ned is used for demonstrating how to create your own generic NED.
+It has been tested in a Linux environment with NSO installed.
 
-Write a description here valuable to a developers working on the NED.
+To compile this package go to src and issue a make clean all.
 
-This file will be removed in the release to a customer site.
+This NED uses the following open source libraries:
 
-# Documentation
+Component                         License
+---------                         -------
+commons-logging-1.2.jar           Apache License Version 2.0
+httpclient-4.5.2.jar              Apache License Version 2.0
+httpcore-4.4.4.jar                Apache License Version 2.0
+json-20171018.jar                 The JSON License
 
-Documentation on how to work with NEDs and other packages can
-be found in the *dev-support* repo. Clone as:
-
-`git clone git@bitbucket.org:tail-f/dev-support.git`
+see the LICENSE file for details
