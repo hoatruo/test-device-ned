@@ -1,0 +1,12 @@
+module tailf-ned-devname-id {
+  namespace "http://tail-f.com/ned/devname-id";
+  prefix devname-id;
+
+  import tailf-ncs-ned {
+    prefix ned;
+  }
+
+  identity devname {
+    base ned:generic-ned-id;
+  }
+}

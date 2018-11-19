@@ -1,0 +1,37 @@
+module tailf-ned-devname-stats {
+
+  namespace "http://tail-f.com/ned/devname/stats";
+  prefix devname-stats;
+
+  import tailf-common {
+    prefix tailf;
+  }
+
+  container exec {
+    tailf:info "Execute commands on device";
+
+    // EXAMPLE "generic" show command
+    tailf:action "show" {
+      tailf:info "Execute show commands";
+      tailf:actionpoint "ncsinternal" {
+        tailf:internal;
+      }
+      input {
+        leaf-list args {
+          tailf:cli-drop-node-name;
+          tailf:cli-flat-list-syntax;
+          type string {
+            tailf:info "show argument(s)";
+          }
+        }
+      }
+      output {
+        leaf result {
+          type string;
+        }
+      }
+    }
+
+  }
+
+}

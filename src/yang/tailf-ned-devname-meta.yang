@@ -1,0 +1,75 @@
+module tailf-ned-devname-meta {
+  namespace "http://tailf.com/ned/devname/meta";
+  prefix devname-meta;
+
+  import tailf-ncs-ned {
+    prefix ned;
+  }
+
+  import tailf-common {
+    prefix tailf;
+  }
+
+  import tailf-ncs {
+    prefix ncs;
+  }
+
+  // =========================================================================
+  // GROUPINGS
+  // =========================================================================
+  grouping dn-ssl-grouping {
+    container ssl {
+      tailf:info "Use SSL for connections towards the device";
+      leaf accept-any {
+        tailf:info "Accept any certificate (unsafe)";
+        description
+          "Accept any SSL certificate presented by the device.
+          Warning! This enables Man in the Middle attacks and
+          should only be used for testing and troubleshooting.";
+        type empty;
+      }
+      leaf certificate {
+        tailf:info "Use specific DER formated SSL certificate";
+        description
+          "SSL certificate stored in DER format but since it is entered
+          as Base64 it is very similar to PEM but without banners like
+          \"----- BEGIN CERTIFICATE -----\".
+
+          Default uses the default trusted certificates installed in
+          Java JVM.
+
+          An easy way to get the PEM of a server:
+            openssl s_client -connect HOST:PORT
+          ";
+        type binary;
+      }
+    }
+  }
+
+  grouping dn-api-grouping {
+    leaf api-base-url {
+      tailf:info "Device REST API base URL";
+      description "API base URL for device REST API";
+      type string;
+    }
+    leaf api-key {
+      tailf:info "API authentication key if needed";
+      description "API authentication key if needed";
+      type string;
+    }
+  }
+
+  // =========================================================================
+  // AUGMENTS
+  // =========================================================================
+  augment "/ncs:devices/ncs:device/ncs:ned-settings" {
+    when "../ncs:device-type/ncs:generic/ncs:ned-id = "
+      + "'devname-id:devname'";
+    container devname-connection {
+      tailf:info "Per device connection configuration";
+      uses dn-ssl-grouping;
+      uses dn-api-grouping;
+    }
+  }
+
+}

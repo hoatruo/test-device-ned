@@ -1,0 +1,20 @@
+<ncs-package xmlns="http://tail-f.com/ns/ncs-packages">
+  <name>devname</name>
+  <package-version>1.0.0</package-version>
+  <description>NED package for Cisco dn</description>
+  <ncs-min-version>3.4</ncs-min-version>
+  <ncs-min-version>4.0</ncs-min-version>
+  <ncs-min-version>4.1</ncs-min-version>
+  <component>
+    <name>devname</name>
+    <ned>
+      <generic>
+        <ned-id xmlns:devname-id="http://tail-f.com/ned/devname-id">devname-id:devname</ned-id>
+        <java-class-name>com.tailf.packages.ned.dn.dnNedGeneric</java-class-name>
+      </generic>
+      <device>
+        <vendor>Cisco</vendor>
+      </device>
+    </ned>
+  </component>
+</ncs-package>
